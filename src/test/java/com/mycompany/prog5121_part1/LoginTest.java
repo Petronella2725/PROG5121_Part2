@@ -29,8 +29,8 @@ public class LoginTest {
     public void testUsernameCorrectlyFormattedMessage() {
         login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27838968976", "Kyle", "ntuli");
         boolean isLogged = login.loginUser("kyl_1", "Ch&&sec@ke99!");
-        String expected = "Welcome Kyle ,ntuli it is great to see you.";
-        String actual = login.returnLoginStatus(isLogged);
+         String expected = "Welcome Kyle, ntuli it is great to see you again.";
+         String actual = login.returnLoginStatus(isLogged);
         assertEquals(expected, actual);
     }
 

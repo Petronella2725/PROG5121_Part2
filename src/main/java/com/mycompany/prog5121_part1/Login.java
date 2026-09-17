@@ -32,7 +32,6 @@ public class Login {
         boolean hasSpecial = false;
 
         for (char c : password.toCharArray()) {
-
             if (Character.isUpperCase(c)) {
                 hasUpper = true;
             } else if (Character.isDigit(c)) {
@@ -45,17 +44,18 @@ public class Login {
         return hasUpper && hasDigit && hasSpecial;
     }
 
-    // Checks cell phone number using a regular expression
+    // Checks South African cell phone number using a regular expression
+    // Regular expression developed with assistance from ChatGPT (OpenAI, 2026).
     public boolean checkCellPhoneNumber(String cellNumber) {
         if (cellNumber == null) {
             return false;
         }
 
-        String regex = "^\\+27\\d{1,9}$";
+        String regex = "^\\+27\\d{9}$";
         return Pattern.matches(regex, cellNumber);
     }
 
-    // Registers the user and returns the appropriate status message
+    // Registers the user and returns the required status message
     public String registerUser(String username, String password,
             String cellNumber, String firstName, String lastName) {
 
@@ -68,7 +68,7 @@ public class Login {
         }
 
         if (!checkCellPhoneNumber(cellNumber)) {
-            return "Cell phone number incorrectly formatted or does not contain international code.";
+            return "Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.";
         }
 
         this.registeredUsername = username;
@@ -77,12 +77,10 @@ public class Login {
         this.firstName = firstName;
         this.lastName = lastName;
 
-        return "Username successfully captured.\n"
-                + "Password successfully captured.\n"
-                + "Cell phone number successfully added.";
+        return "Password successfully captured.";
     }
 
-    // Verifies login credentials against the registered details
+    // Verifies login credentials
     public boolean loginUser(String username, String password) {
         return username != null
                 && password != null
@@ -92,7 +90,6 @@ public class Login {
 
     // Returns the login status message
     public String returnLoginStatus(boolean isLoggedIn) {
-
         if (isLoggedIn) {
             return "Welcome " + firstName + ", " + lastName
                     + " it is great to see you again.";
