@@ -45,7 +45,7 @@ public class Login {
     }
 
     // Checks South African cell phone number using a regular expression
-    // Regular expression developed with assistance from ChatGPT (OpenAI, 2026).
+    
     public boolean checkCellPhoneNumber(String cellNumber) {
         if (cellNumber == null) {
             return false;
