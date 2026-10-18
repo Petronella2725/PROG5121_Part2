@@ -62,6 +62,20 @@ public class Message {
 
         return messageHash;
     }
+    public String checkMessageLength() {
+        if (messageText == null) {
+            return "Message is empty.";
+        }
+
+        if (messageText.length() <= 250) {
+            return "Message ready to send.";
+        }
+
+        int excess = messageText.length() - 250;
+
+        return "Message exceeds 250 characters by " + excess
+                + "; please reduce the size.";
+    }
 }
 
     
