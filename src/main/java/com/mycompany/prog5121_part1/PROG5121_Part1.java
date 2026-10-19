@@ -194,20 +194,9 @@ public class PROG5121_Part1 {
                             break;
                         }
 
-                        case "2": {
-                            Message viewer = new Message(
-                                    "0000000000", 0, "", "");
-
-                            String messages = viewer.printMessages();
-
-                            if (messages.isEmpty()) {
-                                System.out.println(
-                                        "No messages have been sent yet.");
-                            } else {
-                                System.out.println(messages);
-                            }
-                            break;
-                        }
+                        case "2":
+    System.out.println("Coming Soon.");
+    break;
 
                         case "3":
                             System.out.println(
