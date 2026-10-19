@@ -110,6 +110,18 @@ public class MessageTest {
                 "Message successfully stored",
                 message.SentMessage(3));
     }
+    @Test
+public void testReturnTotalMessages() {
+    Message message = new Message(
+            "1234567890", 0,
+            "+27718693002", "Hello");
+
+    assertEquals(0, message.returnTotalMessagess());
+
+    message.SentMessage(1);
+
+    assertEquals(1, message.returnTotalMessagess());
+}
 }
 
 

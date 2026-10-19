@@ -196,7 +196,7 @@ public class PROG5121_Part1 {
 
                         case "2":
     System.out.println("Coming Soon.");
-    break;
+    break; 
 
                         case "3":
                             System.out.println(
