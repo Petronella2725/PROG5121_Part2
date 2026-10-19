@@ -85,23 +85,26 @@ public class Message {
                 + "; please reduce the size.";
     }
         // Processes the user's message choice
-public String SentMessage(int choice) {
-    switch (choice) {
-        case 1:
-            sentMessages.add(this);
-            totalMessages++;
-            return "Message successfully sent";
 
-        case 2:
-            return "Press 0 to delete the message";
+    // Processes the user's message choice
+    public String SentMessage(int choice) {
+        switch (choice) {
+            case 1:
+                sentMessages.add(this);
+                totalMessages++;
+                return "Message successfully sent";
 
-        case 3:
-            return "Message successfully stored";
+            case 2:
+                return "Press 0 to delete the message";
 
-        default:
-            return "Invalid choice";
+            case 3:
+                return storeMessage();
+
+            default:
+                return "Invalid choice";
+        }
     }
-}
+
     // Displays all messages sent during the program
 public String printMessages() {
     StringBuilder output = new StringBuilder();
@@ -125,13 +128,33 @@ public int returnTotalMessagess() {
     return totalMessages;
 }
 
+    
     // Stores this message in a JSON file
     public String storeMessage() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<Message> storedMessages = new ArrayList<>();
 
-        try (FileWriter writer = new FileWriter("messages.json", true)) {
-            writer.write(gson.toJson(this));
-            writer.write(System.lineSeparator());
+        java.io.File file = new java.io.File("messages.json");
+
+        try {
+            if (file.exists() && file.length() > 0) {
+                try (java.io.FileReader reader =
+                        new java.io.FileReader(file)) {
+                    Message[] existing = gson.fromJson(
+                            reader, Message[].class);
+
+                    if (existing != null) {
+                        storedMessages.addAll(
+                                java.util.Arrays.asList(existing));
+                    }
+                }
+            }
+
+            storedMessages.add(this);
+
+            try (FileWriter writer = new FileWriter(file)) {
+                gson.toJson(storedMessages, writer);
+            }
 
             return "Message successfully stored";
         } catch (IOException e) {
@@ -139,7 +162,8 @@ public int returnTotalMessagess() {
         }
     }
 
-}
+    }
+
 
     
 
