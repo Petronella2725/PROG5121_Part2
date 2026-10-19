@@ -36,10 +36,9 @@ public class Message {
     }
 
     // Checks that the message ID contains no more than 10 digits
-    public boolean checkMessageID() {
-        return messageID != null
-                && messageID.matches("\\d{1,10}");
-    }
+   public boolean checkMessageID() {
+    return messageID != null && messageID.matches("\\d{10}");
+}
 
     // Checks the recipient's South African international number
     public String checkRecipientCell() {
