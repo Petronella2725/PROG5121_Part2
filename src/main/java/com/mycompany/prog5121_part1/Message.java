@@ -104,6 +104,9 @@ public class Message {
                 return "Invalid choice";
         }
     }
+    public String getMessageID() {
+    return messageID;
+}
 
     // Displays all messages sent during the program
 public String printMessages() {
