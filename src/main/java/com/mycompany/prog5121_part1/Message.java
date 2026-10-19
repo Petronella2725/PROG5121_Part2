@@ -5,6 +5,10 @@
 package com.mycompany.prog5121_part1;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  *
  * @author petro
@@ -81,21 +85,23 @@ public class Message {
                 + "; please reduce the size.";
     }
         // Processes the user's message choice
-    public String SentMessage(int choice) {
-        switch (choice) {
-            case 1:
-                return "Message successfully sent";
+public String SentMessage(int choice) {
+    switch (choice) {
+        case 1:
+            sentMessages.add(this);
+            totalMessages++;
+            return "Message successfully sent";
 
-            case 2:
-                return "Press 0 to delete the message";
+        case 2:
+            return "Press 0 to delete the message";
 
-            case 3:
-                return "Message successfully stored";
+        case 3:
+            return "Message successfully stored";
 
-            default:
-                return "Invalid choice";
-        }
+        default:
+            return "Invalid choice";
     }
+}
     // Displays all messages sent during the program
 public String printMessages() {
     StringBuilder output = new StringBuilder();
@@ -114,6 +120,25 @@ public String printMessages() {
 
     return output.toString();
 }
+// Returns the total number of messages sent
+public int returnTotalMessagess() {
+    return totalMessages;
+}
+
+    // Stores this message in a JSON file
+    public String storeMessage() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try (FileWriter writer = new FileWriter("messages.json", true)) {
+            writer.write(gson.toJson(this));
+            writer.write(System.lineSeparator());
+
+            return "Message successfully stored";
+        } catch (IOException e) {
+            return "Error storing message: " + e.getMessage();
+        }
+    }
+
 }
 
     
