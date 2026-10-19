@@ -76,6 +76,22 @@ public class Message {
         return "Message exceeds 250 characters by " + excess
                 + "; please reduce the size.";
     }
+        // Processes the user's message choice
+    public String SentMessage(int choice) {
+        switch (choice) {
+            case 1:
+                return "Message successfully sent";
+
+            case 2:
+                return "Press 0 to delete the message";
+
+            case 3:
+                return "Message successfully stored";
+
+            default:
+                return "Invalid choice";
+        }
+    }
 }
 
     
