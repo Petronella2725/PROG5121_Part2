@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.prog5121_part1;
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author petro
@@ -16,6 +17,9 @@ public class Message {
     private String recipient;
     private String messageText;
     private String messageHash;
+    
+     private static final List<Message> sentMessages = new ArrayList<>();
+    private static int totalMessages = 0;
 
     // Constructor: stores the details of one message
     public Message(String messageID, int messageNumber,
@@ -92,6 +96,24 @@ public class Message {
                 return "Invalid choice";
         }
     }
+    // Displays all messages sent during the program
+public String printMessages() {
+    StringBuilder output = new StringBuilder();
+
+    for (Message message : sentMessages) {
+        output.append("Message ID: ")
+              .append(message.messageID)
+              .append("\nMessage Hash: ")
+              .append(message.messageHash)
+              .append("\nRecipient: ")
+              .append(message.recipient)
+              .append("\nMessage: ")
+              .append(message.messageText)
+              .append("\n\n");
+    }
+
+    return output.toString();
+}
 }
 
     
